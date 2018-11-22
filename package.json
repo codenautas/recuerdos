@@ -1,0 +1,42 @@
+{
+  "name": "recuerdos",
+  "description": "Recuerdos geolocalizados",
+  "version": "0.1.0",
+  "author": "Codenautas <codenautas@googlegroups.com>",
+  "license": "MIT",
+  "main": "server/server-recuerdos.js",
+  "files": [
+    "client",
+    "install",
+    "server",
+    "unlogged"
+  ],
+  "dependencies": {
+    "yazl": "~2.5.0",
+    "backend-plus": "~0.26.9",
+    "mini-tools": "~1.0.4"
+  },
+  "devDependencies": {
+    "@types/mocha": "~5.2.5",
+    "@types/yazl": "~2.4.1",
+    "pg-triggers": "~0.2.2",
+    "types.d.ts": "~0.3.0"
+  },
+  "engines": {
+    "node": ">= 10.0.0"
+  },
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "(tsc -p tsconfig-client.json || echo \"continue w/error\") && (tsc -p tsconfig-tests.json || echo \"continue w/error\") && (tsc -p tsconfig-server.json  || echo \"continue w/error\")",
+    "test": "mocha --reporter spec --bail --check-leaks test/",
+    "start": "node server/server-recuerdos.js"
+  },
+  "qa-control": {
+    "package-version": "0.3.0",
+    "coverage": 90,
+    "run-in": "server",
+    "stability": "extending",
+    "type": "app",
+    "ecmaVersion": 6
+  }
+}
